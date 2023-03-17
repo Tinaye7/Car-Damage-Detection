@@ -1,0 +1,179 @@
+{% extends 'insurance/adminbase.html' %}
+{% block content %}
+{%load static%}
+
+<head>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i,800" rel="stylesheet">
+  <!-- Bootstrap CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/bootstrap.min.css">
+  <!-- Bootstrap CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/font-awesome.min.css">
+  <!-- adminpro icon CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/adminpro-custon-icon.css">
+  <!-- meanmenu icon CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/meanmenu.min.css">
+  <!-- mCustomScrollbar CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/jquery.mCustomScrollbar.min.css">
+  <!-- animate CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/animate.css">
+  <!-- jvectormap CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/jvectormap/jquery-jvectormap-2.0.3.css">
+  <!-- normalize CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/data-table/bootstrap-table.css">
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/data-table/bootstrap-editable.css">
+  <!-- normalize CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/normalize.css">
+  <!-- charts CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/c3.min.css">
+  <!-- style CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/style2.css">
+  <!-- responsive CSS
+  ============================================ -->
+  <link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/css/responsive.css">
+  <!-- modernizr JS
+  ============================================ -->
+  <script src="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/js/vendor/modernizr-2.8.3.min.js"></script>
+
+<!-- bootstrap theme-->
+
+<!-- font awesome -->
+
+<!-- custom css -->
+<link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/custom/css/custom.css">
+
+<!-- DataTables -->
+<link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/assests/plugins/datatables/jquery.dataTables.min.css">
+
+<!-- file input -->
+<link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/assests/plugins/fileinput/css/fileinput.min.css">
+
+<!-- jquery -->
+<script src="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/assests/jquery/jquery.min.js"></script>
+<!-- jquery ui -->  
+<link rel="stylesheet" href="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/assests/jquery-ui/jquery-ui.min.css">
+<script src="C:/Users/Tinaye/Videos/insurance_management/templates/insurance/assests/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- bootstrap js -->
+
+
+
+
+
+
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+
+       label #sidebar_btn {
+      z-index: 1;
+      color: #fff;
+      position: fixed;
+      cursor: pointer;
+      left: 300px;
+      padding-left: 60px;
+      margin-top:15px;
+      font-size: 20px;
+      
+      transition: 0.5s;
+      transition-property: color;
+    }
+  </style>
+</head>
+<body class="materialdesign">
+  <div class="wrapper-pro" >
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h4 class="text-center">Rejected Claims</h4>
+    </div>
+    <div class="data-table-area mg-b-15" >
+    <table class="table table-hover table-striped table-bordered" id="dev-table">
+      <thead class="thead-dark">
+        <tr>
+        <th>#</th>
+          <th>Claim ID</th>
+          <th>Vehicle Name</th>
+          <th>Make</th>
+          <th> Registration Number</th>
+          <th>Date</th>
+          <th>Licence</th>
+          <th>Police Report</th>
+          
+          <th>Status</th>
+          <th>Remarks</th>
+          <th>Assess Claim</th>
+          
+          
+          
+        </tr>
+      </thead>  
+      {% for claims in claims %}
+      
+    
+      <tr>
+        <td> {{ forloop.counter }}</td>
+        <td> {{claims.id}}</td>
+
+        <td>{{claims.vehicle}}</td>
+        <td>{{claims.make}}</td>
+        <td>{{claims.reg}}</td>
+        <td id="date">{{claims.date}}</td>
+        <td>
+        {%for licence in licence%}
+      {%if claims.id == licence.claim_id%}
+        <img src="{% static licence.image.url %}" alt="Licence" height="150px" width="150px" /> {%endif%}{%endfor%}</td>
+        <td>{%for policereports in policereports%}
+      {%if claims.id == policereports.claim_id%}
+        <img src="{% static policereports.image.url %}" alt="Police Report" height="150px" width="150px" /> {%endif%}{%endfor%}</td>
+        
+       <td>{{claims.Status}}</td>
+       <td>{{claims.Remarks}}</td>
+       <td><a class="btn btn-success btn-sm" href="{% url 'assess_claim' claims.id %}"><span class="fa fa-edit"></span></a></td>
+        
+      </tr>
+      
+      {% endfor %} 
+    </table>
+  </div>
+</div>
+</div>
+  </div>
+  <script>
+    var today = new Date();
+    var dd=String(today.getDate()).padStart(2,'0');
+    var mm= String(today.getMonth()+ 1).padStart(2,'0');
+    var yyyy=today.getFullYear();
+    today= mm+ '/'+dd+'/'+yyyy;
+    document.getElementById("date").innerHTML=today;
+  </script>
+</body>
+
+
+{% endblock content %}

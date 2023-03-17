@@ -1,0 +1,176 @@
+{% extends 'customer/customerbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{%load static%}
+    
+
+<head>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ 
+ 
+  <style media="screen">
+    input[type=text], select,input[type=number] ,input[type=password], textarea{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+    input[type=submit] {
+    width: 22.4%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+
+   label #sidebar_btn {
+      z-index: 1;
+      color: #fff;
+      position: fixed;
+      cursor: pointer;
+      left: 300px;
+      padding-left: 60px;
+      margin-top:15px;
+      font-size: 20px;
+      
+      transition: 0.5s;
+      transition-property: color;
+    }
+    .left_area{
+      margin-top:8px;
+    }
+  </style>
+
+
+</head>
+
+<br><br>
+<h2 style="text-align:center;"><u>CLAIM DETAILS</u></h2>
+<div>
+  <form method="post" autocomplete="off" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
+        {% csrf_token %}
+      
+        <label for="name"><strong>Full Name</strong></label>
+        {% render_field ClaimsForm.name|attr:'readonly:true' class="form-control" placeholder="Full Name"  %}
+        <label for="phone"><strong>Mobile Number</strong></label>
+        {% render_field ClaimsForm.phone|attr:'readonly:true' class="form-control" placeholder="Phone Number"  %}
+        <label for="email"><strong>Email Address</strong></label>
+        {% render_field ClaimsForm.email|attr:'readonly:true' class="form-control" placeholder="Email"  %}
+        <label for="address"><strong>Address</strong></label>
+        {% render_field ClaimsForm.address|attr:'readonly:true' class="form-control" placeholder="Address"  %}
+        <label for="national"><strong>ID Number</strong></label>
+        {% render_field ClaimsForm.national|attr:'readonly:true' class="form-control" placeholder="ID Number"  %}
+        <label for="dob"><strong>Date Of Birth</strong></label>
+        {% render_field ClaimsForm.dob|attr:'readonly:true' class="form-control" placeholder="DOB"  %}
+        <label for="gender"><strong>Gender</strong></label>
+        {% render_field ClaimsForm.gender|attr:'readonly:true' class="form-control" placeholder="Gender"  %}
+        <label for="driver"><strong>Name of Driver</strong></label>
+        {% render_field ClaimsForm.driver|attr:'readonly:true' class="form-control" placeholder="Driver"  %}
+        <label for="owner"><strong>Driver Is</strong></label>
+        {% render_field ClaimsForm.ownership|attr:'readonly:true' class="form-control" placeholder="Ownership"  %}
+        <label for="auth"><strong>Was Driver Authorised To Drive</strong></label>
+        {% render_field ClaimsForm.authorized|attr:'readonly:true' class="form-control" placeholder="Authorized"  %}
+        <label for="licence"><strong>Was Driver Licenced to Drive</strong></label>
+        {% render_field ClaimsForm.licenced|attr:'readonly:true' class="form-control" placeholder="Licenced"  %}
+        <label for="purpose"><strong>Purpose Vehicle was being used for</strong></label>
+        {% render_field ClaimsForm.purpose|attr:'readonly:true' class="form-control" placeholder="Purpose"  %}
+        <label for="vehicle"><strong>Vehicle Name</strong></label>
+        {% render_field ClaimsForm.vehicle|attr:'readonly:true' class="form-control" placeholder="Vehicle Name"  %}
+        <label for="make"><strong>Make</strong></label>
+        {% render_field ClaimsForm.make|attr:'readonly:true' class="form-control" placeholder="Make"  %}
+        <label for="reg"><strong>Registration Number</strong></label>
+        {% render_field ClaimsForm.reg|attr:'readonly:true' class="form-control" placeholder="Registration Number"  %}
+        <label for="add"><strong>Address where loss occured</strong></label>
+        {% render_field ClaimsForm.address_where_it_occured|attr:'readonly:true' class="form-control" placeholder="Where it Occured"  %}
+        <label for="time"><strong>Time of loss</strong></label>
+        {% render_field ClaimsForm.time|attr:'readonly:true' class="form-control" placeholder="Time"  %}
+        <label for="date"><strong>Date of loss</strong></label>
+        {% render_field ClaimsForm.date|attr:'readonly:true' class="form-control" placeholder="Date"  %}
+        <label for="how"><strong>How the Accident occured</strong></label>
+        {% render_field ClaimsForm.how_it_happened|attr:'readonly:true' class="form-control" placeholder="How it Happened"  %}
+        <label for="weather"><strong>Weather Condition</strong></label>
+        {% render_field ClaimsForm.weather|attr:'readonly:true' class="form-control" placeholder="Weather"  %}
+        <label for="road"><strong>Type of road surface</strong></label>
+        {% render_field ClaimsForm.road_surface|attr:'readonly:true' class="form-control" placeholder="Road Surface"  %}
+        <label for="extent"><strong>Extent of Damage</strong></label>
+        {% render_field ClaimsForm.extent_of_damage|attr:'readonly:true' class="form-control" placeholder="Extent of Damage"  %}
+        <label for="estimate"><strong>Estimate cost of repair</strong></label>
+        {% render_field ClaimsForm.estimate_repair_cost|attr:'readonly:true' class="form-control" placeholder="Estimate Repair Cost"  %}
+        <label for="injury"><strong>Details of Injuries if any</strong></label>
+        {% render_field ClaimsForm.details_of_injuries|attr:'readonly:true' class="form-control" placeholder="Details of Injuries"  %}
+        <label for="passenger"><strong>Name(s) of Passenger(s)</strong></label>
+        {% render_field ClaimsForm.passengers|attr:'readonly:true' class="form-control" placeholder="Passengers"  %}
+        <label for="damage"><strong>Damaged third party property</strong></label>
+        {% render_field ClaimsForm.damaged_property|attr:'readonly:true' class="form-control" placeholder="Damaged Property"  %}
+        <label for="third"><strong>Name(s) of third party</strong></label>
+        {% render_field ClaimsForm.names_of_third_parties|attr:'readonly:true' class="form-control" placeholder="Third Parties"  %}
+        <label for="status"><strong>Status</strong></label>
+        {% render_field ClaimsForm.Status|attr:'readonly:true' class="form-control" placeholder="Status"  %}
+        <label for="remarks"><strong>Remarks</strong></label>
+        {% render_field ClaimsForm.Remarks|attr:'readonly:true' class="form-control" placeholder="Remarks"  %}
+         <br><br>
+         <div style="text-align: center;">
+        <label for="licence" style="text-align:center;"><h2><u>Licence</u></h2></label>
+         </div>
+        <div style="text-align: center;">
+        {%for licence in licence%}
+          <img src="{% static licence.image.url %}" alt="Licence"  height="350px" width="350px" />
+        {%endfor%} 
+
+        </div> 
+        <div style="text-align: center;">
+            <label for="police" style="text-align: center;"><h2><u>Police Report</u></h2></label>
+        </div>
+        <div style="text-align: center;">
+        {%for police in police%}
+          <img src="{% static police.image.url %}" alt="Licence"  height="350px" width="350px" /> 
+          {%endfor%}
+        </div>
+<br><br>
+<div style="text-align: center;">
+        <label for="quotation" style="text-align: center;"><h2><u>Quotations</u></h2></label>
+        </div>
+        {%for quotation in quotation%}
+        <div style="text-align: center;">
+          <img src="{% static quotation.image.url %}" alt="Licence"  height="350px" width="350px" /> 
+        {%endfor%}  
+        </div>
+<br><br>
+<div style="text-align: center;">
+<label for="damages" style="text-align: center;"><h2><u>Damage Images</u></h2></label>
+</div>
+<div style="text-align: center;">
+          {%for damage in damage%}
+
+          <img src="{% static damage.image.url %}" alt="Licence"  height="350px" width="350px" /> 
+          {%endfor%}
+</div>
+<br><br>
+<p class="lead" style="text-align: center;" >
+<a class="btn btn-danger btn-lg" onclick href='/customer/history' type="button" style="width: 100%;background-color: #0C8620;color: white;padding: 14px 20px;margin: 8px 0;border: none;border-radius: 4px;cursor: pointer;" value="Assess Damage">Go Back</a> 
+
+
+</p>
+  </form>
+</div>
+
+
+
+<br><br><br><br><br><br><br><br>
+{% endblock content %}
